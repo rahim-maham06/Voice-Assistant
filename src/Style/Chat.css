@@ -6,7 +6,6 @@
   justify-content: center; /* Centers content vertically */
   align-items: center;     /* Centers content horizontally */
   height: 100vh;           /* Full viewport height */
-  background-color: #f0f0f0; /* Light background for visibility */
 }
 
 .speaking-indicator {
@@ -18,14 +17,14 @@
 
 .speaking-image {
   width: 500px;
-  height: 500px;
+  height: 600px;
 }
 
 .caption {
   margin-top: 10px;
   padding-left: 80px;
   padding-right: 80px;
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
 }
 

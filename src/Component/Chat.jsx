@@ -132,6 +132,12 @@ const Chat = () => {
         <div className="caption">{botMessage}</div>
       </div>
     )}
+    {!isSpeaking && (
+      <div className="speaking-indicator">
+        <img src="assistant.png" alt="Speaking" className="speaking-image" />
+        <div className="caption">{botMessage}</div>
+      </div>
+    )}
     
     <div className="input-container">
       <button 
