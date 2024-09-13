@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const Chat = () => {
   const [loading, setLoading] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
-  const [inputText, setInputText] = useState('')
+  // const [inputText, setInputText] = useState('')
   const [botMessage, setBotMessage] = useState('')
   const navigate = useNavigate()
   const speechSynthesisRef = useRef(null)
@@ -31,12 +31,6 @@ const Chat = () => {
       setIsSpeaking(false)
     }
   }, [])
-
-  useEffect(() => {
-    if (listening) {
-      setInputText(transcript)
-    }
-  }, [transcript, listening])
   
   const speakBotMessage = (text) => {
     window.speechSynthesis.cancel();
@@ -70,12 +64,10 @@ const Chat = () => {
   };
   
 
-  const handleSendMessage = useCallback(async () => {
+  const handleSendMessage = useCallback(async (inputText) => {
     if (inputText.trim() !== '') {
       setLoading(true)
-      setInputText('')
       setBotMessage('')
-      resetTranscript()
       try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           model: 'gpt-3.5-turbo',
@@ -94,7 +86,7 @@ const Chat = () => {
       }
       setLoading(false)
     }
-  },[inputText, resetTranscript])
+  },[])
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return <div>Your browser doesn't support speech recognition.</div>
@@ -112,13 +104,15 @@ const Chat = () => {
   const listen = () => { 
     if(listening){
       SpeechRecognition.stopListening()
-      handleSendMessage()
+      handleSendMessage(transcript)
+      resetTranscript()
     }
     else{
       if(isSpeaking){
         setIsSpeaking(false)
         window.speechSynthesis.cancel()
       }
+      resetTranscript()
       SpeechRecognition.startListening({continuous :true})
     }
   }
