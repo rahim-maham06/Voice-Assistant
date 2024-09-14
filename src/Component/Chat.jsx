@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 const Chat = () => {
   const [loading, setLoading] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
-  // const [inputText, setInputText] = useState('')
   const [botMessage, setBotMessage] = useState('')
   const navigate = useNavigate()
   const speechSynthesisRef = useRef(null)
@@ -40,9 +39,9 @@ const Chat = () => {
     const voices = window.speechSynthesis.getVoices();
   
     const betterVoice = voices.find(voice => 
-    voice.lang.includes('hi-IN') ||  // Hindi
-    voice.lang.includes('ur-PK') // Urdu
-  )
+    voice.lang.includes('hi-IN') || 
+    voice.lang.includes('ur-PK')
+    )
 
   if (betterVoice) {
     speech.voice = betterVoice;
@@ -70,7 +69,7 @@ const Chat = () => {
       try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           model: 'gpt-3.5-turbo',
-          messages: [{ role: 'user', content: `${inputText}. Please reply in roman urdu.` }],
+          messages: [{ role: 'user', content: inputText }],
           max_tokens: 150,
         }, {
           headers: {
