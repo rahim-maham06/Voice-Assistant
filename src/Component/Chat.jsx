@@ -36,20 +36,19 @@ const Chat = () => {
     window.speechSynthesis.cancel();
   
     const speech = new SpeechSynthesisUtterance(text);
-  
-    // Set the language to Urdu (Roman Urdu is not officially supported, but Urdu language can help)
-    speech.lang = 'hi-IN'; // Urdu language code
-  
-    // Find voices available for speech synthesis
+
     const voices = window.speechSynthesis.getVoices();
   
-    // Try to find a voice that supports Urdu (if available)
-    const urduVoice = voices.find(voice => voice.lang.includes('hi'));
-  
-    // Set the voice to Urdu (or leave default if not found)
-    if (urduVoice) {
-      speech.voice = urduVoice;
-    }
+    const betterVoice = voices.find(voice => 
+    voice.lang.includes('hi-IN') ||  // Hindi
+    voice.lang.includes('ur-PK') // Urdu
+  )
+
+  if (betterVoice) {
+    speech.voice = betterVoice;
+  } else {
+    console.warn('No suitable voice found, using default.');
+  }
   
     speechSynthesisRef.current = speech;
     setIsSpeaking(true);
