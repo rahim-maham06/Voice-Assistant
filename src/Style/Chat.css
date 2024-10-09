@@ -1,71 +1,75 @@
-
-
 .chat-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centers content vertically */
-  align-items: center;     /* Centers content horizontally */
-  height: 100vh;           /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    height: 100vh; /* Full viewport height */
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .speaking-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.speaking-image {
-  width: 500px;
-  height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .caption {
-  margin-top: 10px;
-  padding-left: 80px;
-  padding-right: 80px;
-  font-size: 20px;
-  color: #333;
+    margin-top: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+    font-size: 20px;
+    color: #333;
 }
 
 .input-container {
-  display: flex;
-  gap: 10px; /* Adds space between buttons */
+    display: flex;
+    gap: 10px; /* Adds space between buttons */
+    justify-content: center;
 }
 
-.voice-button, .logout-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.speaking-indicator img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.voice-button,
+.logout-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .voice-button {
-  background-color: #4CAF50;
-  color: white;
+    background-color: #4caf50;
+    color: white;
 }
 
 .voice-button:disabled {
-  background-color: #a5d6a7;
-  cursor: not-allowed;
+    background-color: #a5d6a7;
+    cursor: not-allowed;
 }
 
 .logout-button {
-  background-color: #f44336;
-  color: white;
+    background-color: #f44336;
+    color: white;
 }
 
 .logout-button:disabled {
-  background-color: #ef9a9a;
-  cursor: not-allowed;
+    background-color: #ef9a9a;
+    cursor: not-allowed;
 }
 
 .voice-button:hover:enabled {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .logout-button:hover:enabled {
-  background-color: #e53935;
+    background-color: #e53935;
 }
